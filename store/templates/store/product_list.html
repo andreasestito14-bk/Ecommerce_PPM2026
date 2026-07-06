@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Catalogo | E-Commerce PPM{% endblock %}
+
+{% block content %}
+    <h1>{% if category %}{{ category.name }}{% else %}Tutti i Prodotti{% endif %}</h1>
+
+    <p>
+        <strong>Filtra per Categoria:</strong>
+        <a href="{% url 'store:product_list' %}">Tutte</a> |
+        {% for c in categories %}
+            <a href="{% url 'store:product_list_by_category' c.slug %}">{{ c.name }}</a> |
+        {% endfor %}
+    </p>
+    <hr>
+
+    <ul>
+        {% for product in products %}
+            <li style="margin-bottom: 15px;">
+                <strong>{{ product.name }}</strong> - Prezzo: €{{ product.price }} <br>
+                Disponibilità: {{ product.stock }} pezzi <br>
+                <a href="{% url 'store:product_detail' product.id %}">Vedi Dettaglio</a>
+            </li>
+        {% empty %}
+            <p>Nessun prodotto disponibile in questa categoria.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

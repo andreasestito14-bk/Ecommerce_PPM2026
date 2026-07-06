@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} | Dettaglio{% endblock %}
+
+{% block content %}
+    <p><a href="{% url 'store:product_list' %}">&larr; Torna al Catalogo</a></p>
+
+    <h1>{{ product.name }}</h1>
+    <p><strong>Categoria:</strong> {{ product.category.name }}</p>
+    <p><strong>Prezzo:</strong> €{{ product.price }}</p>
+    <p><strong>Disponibilità:</strong> {{ product.stock }} pezzi</p>
+    <hr>
+    <h3>Descrizione</h3>
+    <p>{{ product.description }}</p>
+{% endblock %}

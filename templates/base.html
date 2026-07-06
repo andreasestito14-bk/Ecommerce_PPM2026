@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}E-Commerce PPM{% endblock %}</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 20px;">
+
+    <nav style="border-bottom: 2px solid #ccc; padding-bottom: 10px; margin-bottom: 20px;">
+        <a href="{% url 'store:product_list' %}"><strong>Catalogo Prodotti</strong></a> |
+        {% if user.is_authenticated %}
+            <span>Utente: {{ user.username }}</span> |
+        {% endif %}
+        <a href="/admin/">Pannello Admin</a>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>
