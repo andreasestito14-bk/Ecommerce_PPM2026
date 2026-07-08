@@ -8,9 +8,16 @@
 
     <nav style="border-bottom: 2px solid #ccc; padding-bottom: 10px; margin-bottom: 20px;">
         <a href="{% url 'store:product_list' %}"><strong>Catalogo Prodotti</strong></a> |
+
         {% if user.is_authenticated %}
-            <span>Utente: {{ user.username }}</span> |
+            <span>Benvenuto, {{ user.username }}!</span> |
+            <a href="{% url 'accounts:logout' %}">Esci (Logout)</a> |
+        {% else %}
+            <a href="{% url 'accounts:login' %}">Accedi</a> |
+            <a href="{% url 'accounts:register' %}">Registrati</a> |
         {% endif %}
+
+
         <a href="/admin/">Pannello Admin</a>
     </nav>
 

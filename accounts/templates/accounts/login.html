@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Login | E-Commerce PPM{% endblock %}
+
+{% block content %}
+    <h2>Accedi al tuo account</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+    <p>Non hai un account? <a href="{% url 'accounts:register' %}">Registrati qui</a></p>
+{% endblock %}
