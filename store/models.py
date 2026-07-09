@@ -53,6 +53,11 @@ class Order(models.Model):
     def __str__(self):
         return f"Ordine #{self.id} - {self.user.username}"
 
+    @property
+    def get_total(self):
+        """Calcola il totale complessivo dell'intero carrello"""
+        return sum(item.get_total_item_price for item in self.items.all())
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="items", verbose_name="Ordine")
@@ -62,3 +67,7 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity}x {self.product.name} (Ordine #{self.order.id})"
+
+    @property
+    def get_total_item_price(self):
+        return self.price * self.quantity

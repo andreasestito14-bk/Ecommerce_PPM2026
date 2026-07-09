@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Il tuo Carrello | E-Commerce PPM{% endblock %}
+
+{% block content %}
+    <h1>Il tuo Carrello</h1>
+    <p><a href="{% url 'store:product_list' %}">&larr; Continua lo shopping</a></p>
+    <hr>
+
+    {% if order.items.all %}
+        <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th>Prodotto</th>
+                    <th>Prezzo Unitario</th>
+                    <th>Quantità</th>
+                    <th>Totale Parziale</th>
+                    <th>Azione</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order.items.all %}
+                    <tr>
+                        <td><strong>{{ item.product.name }}</strong></td>
+                        <td>€{{ item.product.price }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>€{{ item.get_total_item_price }}</td>
+                        <td>
+                            <a href="{% url 'store:remove_from_cart' item.id %}" style="color: red;">Rimuovi</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3 style="text-align: right; margin-top: 20px;">
+            TOTALE ORDINE: <span style="color: green;">€{{ order.get_total }}</span>
+        </h3>
+
+        <!-- Bottone finto per il Checkout dello Step 6 -->
+        <div style="text-align: right; margin-top: 10px;">
+            <button style="padding: 10px 20px; font-size: 16px; background-color: #333; color: white; border: none; cursor: pointer;">
+                Procedi al Pagamento Simulato &rarr;
+            </button>
+        </div>
+
+    {% else %}
+        <p>Il tuo carrello è attualmente vuoto.</p>
+    {% endif %}
+{% endblock %}
