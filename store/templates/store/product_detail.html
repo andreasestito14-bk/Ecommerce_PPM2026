@@ -14,7 +14,6 @@
     <p>{{ product.description }}</p>
 
     <br>
-    <!-- Ecco il pulsante reale per aggiungere il prodotto al carrello -->
     <a href="{% url 'store:add_to_cart' product.id %}" style="display: inline-block; padding: 10px 20px; background-color: green; color: white; text-decoration: none; font-weight: bold;">
         Aggiungi al Carrello
     </a>

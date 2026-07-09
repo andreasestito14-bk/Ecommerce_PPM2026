@@ -8,7 +8,7 @@
     <hr>
 
     {% if order.items.all %}
-        <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse; text-align: left;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
             <thead>
                 <tr style="background-color: #f2f2f2;">
                     <th>Prodotto</th>
@@ -39,9 +39,11 @@
 
         <!-- Bottone finto per il Checkout dello Step 6 -->
         <div style="text-align: right; margin-top: 10px;">
-            <button style="padding: 10px 20px; font-size: 16px; background-color: #333; color: white; border: none; cursor: pointer;">
-                Procedi al Pagamento Simulato &rarr;
-            </button>
+            <div style="text-align: right; margin-top: 10px;">
+                <a href="{% url 'store:checkout' %}" style="display: inline-block; padding: 10px 20px; font-size: 16px; background-color: #333; color: white; text-decoration: none; font-weight: bold; border: none; cursor: pointer;">
+                    Procedi al Pagamento Simulato &rarr;
+                </a>
+            </div>
         </div>
 
     {% else %}

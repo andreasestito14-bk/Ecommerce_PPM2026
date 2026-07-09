@@ -16,7 +16,6 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    # Relazione 1: Uno-a-Molti con Category
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products", verbose_name="Categoria")
     name = models.CharField(max_length=200, verbose_name="Nome Prodotto")
     description = models.TextField(verbose_name="Descrizione")
@@ -40,7 +39,6 @@ class Order(models.Model):
         ('cancelled', 'Annullato'),
     ]
 
-    # Relazione 2: Uno-a-Molti col CustomUser
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orders", verbose_name="Cliente")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Data Ordine")
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending', verbose_name="Stato")
@@ -55,7 +53,6 @@ class Order(models.Model):
 
     @property
     def get_total(self):
-        """Calcola il totale complessivo dell'intero carrello"""
         return sum(item.get_total_item_price for item in self.items.all())
 
 

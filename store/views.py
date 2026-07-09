@@ -53,3 +53,21 @@ def remove_from_cart(request, item_id):
     item = get_object_or_404(OrderItem, id=item_id, order__user=request.user)
     item.delete()
     return redirect('store:cart_detail')
+
+
+@login_required(login_url='accounts:login')
+def checkout_view(request):
+    order = get_object_or_404(Order, user=request.user, status='pending')
+
+    for item in order.items.all():
+        product = item.product
+        if product.stock >= item.quantity:
+            product.stock -= item.quantity
+        else:
+            product.stock = 0
+        product.save()
+
+    order.status = 'completed'
+    order.save()
+
+    return render(request, 'store/checkout_success.html')

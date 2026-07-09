@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Ordine Completato | E-Commerce PPM{% endblock %}
+
+{% block content %}
+    <div style="text-align: center; margin-top: 50px;">
+        <h1 style="color: green;">Pagamento Ricevuto con Successo!</h1>
+        <p>Grazie per il tuo acquisto. L'operazione è andata a buon fine e lo stock del magazzino è stato aggiornato.</p>
+
+        <br>
+        <p><a href="{% url 'store:product_list' %}" style="display: inline-block; padding: 10px 20px; background-color: #333; color: white; text-decoration: none; font-weight: bold;">
+            &larr; Torna al Catalogo Prodotti
+        </a></p>
+    </div>
+{% endblock %}
