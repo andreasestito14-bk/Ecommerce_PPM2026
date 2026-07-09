@@ -1,26 +1,56 @@
-# E-Commerce PPM
+# E-Commerce
+**Studente:** Andrea Sestito
 
-Progetto di esame. Applicazione Full-Stack sviluppata con Django.
+**Matricola:** 7074084
 
-Sono disponibili i seguenti account demo:
+## Tipo di Progetto
+Full-Stack Web Application
 
-- **Amministratore (Admin)**
-  - Username: `admin_demo`
-  - Password: `admin12345`
-  - *Ruolo: Accesso al backend, gestione prodotti e categorie.*
+## Framework
+Django
 
-- **Cliente (Customer)**
-  - Username: `cliente1`
-  - Password: `Test1234!`
-  - *Ruolo: Navigazione catalogo, gestione carrello e checkout.*
+## Descrizione
+Piattaforma E-commerce Full-Stack sviluppata con Django. Il sistema gestisce l'intero flusso di vendita: dal catalogo prodotti e carrello dinamico, fino al checkout con aggiornamento automatico dello stock. Include un sistema di autenticazione che protegge le funzionalità di gestione del catalogo, riservate esclusivamente all'amministratore tramite pannello dedicato.
 
----
+## Funzionalità Implementate
+### Ruolo Cliente
+- Registrazione e Login.
+- Visualizzazione catalogo prodotti.
+- Gestione carrello (aggiunta/rimozione prodotti).
+- Checkout e aggiornamento disponibilità stock.
+
+### Ruolo Amministratore
+- Accesso riservato al pannello di controllo.
+- Creazione/Modifica/Eliminazione prodotti e categorie.
+
+## Istruzioni per l'esecuzione locale
+1. Clona il repository: `git clone [https://github.com/andreasestito14-bk/Ecommerce_PPM2026.git]`
+2. Crea un ambiente virtuale: `python -m venv venv`
+3. Installa le dipendenze: `pip install -r requirements.txt`
+4. Applica le migrazioni: `python manage.py migrate`
+5. Avvia il server: `python manage.py runserver`
+
+## Database
+Il file `db.sqlite3` incluso contiene dati demo (categorie, prodotti, utenti) per testare immediatamente il progetto.
+
+## Account Demo
+- **Amministratore:**
+  - Username: admin_demo
+  - Password: admin12345
+  - Ruolo: Admin
+- **Cliente:**
+  - Username: cliente1
+  - Password: Test1234!
+  - Ruolo: Cliente
+
+## Link Deploy Online
+https://ecommerce-ppm-andreas.onrender.com/
 
 ## Browser-based Testing Scenario
 Di seguito un breve scenario di test per verificare il funzionamento dell'applicazione tramite browser:
 
 ### 1. Test Permessi e Creazione Dati (Ruolo Admin)
-1. Clicca il link https://ecommerce-ppm-andreas.onrender.com/ e vai alla homepage.
+1. Clicca il link e vai alla homepage.
 2. Clicca su **"Accedi"** ed effettua il login con l'account **Amministratore**.
 3. Clicca sul link **"Pannello Admin"** nella navbar (che è visibile solo agli staff/admin).
 4. Naviga nella sezione `Store > Products` e aggiungi un nuovo prodotto (es. "Mouse Wireless"), impostando una categoria, un prezzo e una disponibilità (stock) di 10 pezzi.
