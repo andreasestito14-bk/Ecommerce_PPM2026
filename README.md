@@ -20,7 +20,7 @@ Sono disponibili i seguenti account demo:
 Di seguito un breve scenario di test per verificare il funzionamento dell'applicazione tramite browser:
 
 ### 1. Test Permessi e Creazione Dati (Ruolo Admin)
-1. Clicca il link e vai alla homepage.
+1. Clicca il link https://ecommerce-ppm-andreas.onrender.com/ e vai alla homepage.
 2. Clicca su **"Accedi"** ed effettua il login con l'account **Amministratore**.
 3. Clicca sul link **"Pannello Admin"** nella navbar (che è visibile solo agli staff/admin).
 4. Naviga nella sezione `Store > Products` e aggiungi un nuovo prodotto (es. "Mouse Wireless"), impostando una categoria, un prezzo e una disponibilità (stock) di 10 pezzi.
