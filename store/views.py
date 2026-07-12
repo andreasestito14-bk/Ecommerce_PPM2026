@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import DetailView
 from .models import Product, Category, Order, OrderItem
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 def product_list(request, category_slug=None):
@@ -37,13 +38,27 @@ def cart_detail(request):
 @login_required(login_url='accounts:login')
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
+
+    if product.stock <= 0:
+        messages.error(request, f"Spiacenti, '{product.name}' è esaurito!")
+        return redirect('store:product_list')  # Torna al catalogo
+
     order, created = Order.objects.get_or_create(user=request.user, status='pending')
 
-    order_item, item_created = OrderItem.objects.get_or_create(order=order, product=product, defaults={'price': product.price, 'quantity': 1})
+    order_item, item_created = OrderItem.objects.get_or_create(
+        order=order, product=product,
+        defaults={'price': product.price, 'quantity': 1}
+    )
 
     if not item_created:
-        order_item.quantity += 1
-        order_item.save()
+        if order_item.quantity < product.stock:
+            order_item.quantity += 1
+            order_item.save()
+            messages.success(request, "Prodotto aggiunto al carrello.")
+        else:
+            messages.error(request, "Non abbiamo abbastanza stock per aggiungerne altri.")
+    else:
+        messages.success(request, "Prodotto aggiunto al carrello.")
 
     return redirect('store:cart_detail')
 

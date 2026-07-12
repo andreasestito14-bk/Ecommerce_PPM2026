@@ -23,6 +23,16 @@
         {% endif %}
     </nav>
 
+    {% if messages %}
+        <div style="margin: 10px; padding: 10px; border: 1px solid #ccc;">
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %}; font-weight: bold;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <main>
         {% block content %}
         {% endblock %}
